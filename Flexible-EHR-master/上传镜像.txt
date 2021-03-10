@@ -1,0 +1,28 @@
+#build image(后端为例)
+cd /Users/sunyue/Desktop/flexible-ehr/flexible-ehr-backend 
+
+docker build -f Dockerfile -t flexible-ehr-backend-image:2.1 .
+docker build -f Dockerfile -t flexible-ehr-frontend-image:2.1 .
+
+#build完成后（前端）
+
+docker images
+
+docker tag 362b90fbbe97 flexible-ehr-frontend:2.1
+docker tag 08f52735da8e flexible-ehr-backend:2.1
+
+docker tag flexible-ehr-frontend:2.1 jgncsy/flexible-ehr-frontend:2.1
+docker tag flexible-ehr-backend:2.1 jgncsy/flexible-ehr-backend:2.1
+
+docker push jgncsy/flexible-ehr-frontend:2.1
+docker push jgncsy/flexible-ehr-backend:2.1
+
+
+#怎么pull（前端）
+docker pull jgncsy/flexible-ehr-frontend:2.1
+docker pull jgncsy/flexible-ehr-backend:2.1
+
+##pull下来怎么run （前端）
+docker run -d -p 80:80 jgncsy/flexible-ehr-frontend:2.1
+docker run -d -p 3000:443 jgncsy/flexible-ehr-backend:2.1
+

@@ -1,0 +1,32 @@
+<div style="width: 100%">
+  <h1>Document Reference</h1>
+  <div>
+    <mat-form-field  style="width: 100%">
+      <input #searchInput type="text" placeholder="search..."  matInput
+             [value]="globaldataService.getPatient() == undefined? '' : globaldataService.getPatient().name"
+             [matAutocomplete]="auto" >
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelect($event)">
+        <mat-option *ngFor="let patient of patients" [value]="patient.name" >
+          <div>{{patient.name}} ({{patient.id}})</div>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+    <div *ngIf="documentreferences.length != 0" style="margin-bottom: 1rem; height: 300px; overflow: auto;">
+      <app-documentreference-info-show [documentreferences]="documentreferences"></app-documentreference-info-show>
+    </div>
+<!--    <button mat-raised-button="" color="primary" (click)="add()">Add</button>-->
+    <div>
+      <button mat-raised-button="" color="primary"
+              *ngIf="!hasSearch"
+              [disabled] = "globaldataService.getPatient() == undefined ||
+            hasSearch" (click)="search()">Search</button>
+      <mat-progress-bar *ngIf="isWaiting" mode="indeterminate"></mat-progress-bar>
+    </div>
+    <br>
+    <div>
+      <button mat-raised-button="" color="primary"
+              *ngIf="hasSearch && !isWaiting"
+              [disabled]="!hasSearch" (click)="add()">Add</button>
+    </div>
+</div>

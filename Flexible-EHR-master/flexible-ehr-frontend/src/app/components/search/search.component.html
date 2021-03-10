@@ -1,0 +1,21 @@
+<div style="padding: 1rem">
+  <h1>Search</h1>
+
+  <div>
+    <h3>By Patient Info</h3>
+    <mat-form-field>
+      <input matInput=""  type="text" placeholder="name" (keyup.enter)="searchService.searchByName($event.target.value)">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <h3>By Color</h3>
+    <div>
+        <span *ngFor="let color of colorService.colors"
+              style="display: inline-block;width: 20px; height:20px; margin-right: 10px; box-shadow: gray 0px 0px 5px"
+              [style.background]="color" (click)="searchService.searchByColor(color)"></span>
+    </div>
+  </div>
+  <br>
+  <button mat-raised-button="" color="primary" (click)="searchService.reset()">Reset</button>
+</div>

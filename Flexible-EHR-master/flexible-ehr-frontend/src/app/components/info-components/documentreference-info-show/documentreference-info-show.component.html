@@ -1,0 +1,31 @@
+<table style="width: 100%" *ngIf="hasSelect">
+  <tr>
+    <th style="width: 20%; text-align: left">Clinical Status</th>
+    <th style="width: 40%; text-align: left">Type</th>
+    <th style="width: 25%; text-align: left">Date Time</th>
+    <th style="width: 20%; text-align: left">Selected</th>
+  </tr>
+  <tr *ngFor="let document of documentreferences">
+    <td>{{document.clinicalStatus}}</td>
+    <td>{{document.type}}</td>
+    <td>{{document.DateTime}}</td>
+    <td>
+      <mat-checkbox [(ngModel)]="document.isSelected"></mat-checkbox>
+    </td>
+  </tr>
+
+</table>
+
+<table style="width: 100%" *ngIf="!hasSelect">
+  <tr>
+    <th style="width: 30%; text-align: left">Clinical Status</th>
+    <th style="width: 30%; text-align: left">Type</th>
+    <th style="width: 30%; text-align: left">Date Time</th>
+  </tr>
+  <tr *ngFor="let document of documentreferences">
+    <td>{{document.clinicalStatus}}</td>
+    <td>{{document.type}}</td>
+    <td>{{document.DateTime}}</td>
+  </tr>
+
+</table>

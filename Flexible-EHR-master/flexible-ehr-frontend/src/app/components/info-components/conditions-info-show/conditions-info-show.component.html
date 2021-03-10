@@ -1,0 +1,31 @@
+<table style="width: 100%" *ngIf="hasSelect">
+  <tr>
+    <th style="width: 30%; text-align: left">Field</th>
+    <th style="width: 30%; text-align: left">Date Recorded</th>
+    <th style="width: 30%; text-align: left">Clinical Status</th>
+    <th style="width: 30%; text-align: left">selected</th>
+  </tr>
+  <tr *ngFor="let condition of conditions">
+    <td>{{condition.code_name}}</td>
+    <td>{{condition.dateRecorded | date:'shortDate'}}</td>
+    <td>{{condition.clinicalStatus}}</td>
+    <td>
+      <mat-checkbox [(ngModel)]="condition.isSelected"></mat-checkbox>
+    </td>
+  </tr>
+
+</table>
+
+<table style="width: 100%" *ngIf="!hasSelect">
+  <tr>
+    <th style="width: 30%; text-align: left">Field</th>
+    <th style="width: 30%; text-align: left">Date Recorded</th>
+    <th style="width: 30%; text-align: left">Clinical Status</th>
+  </tr>
+  <tr *ngFor="let condition of conditions">
+    <td>{{condition.code_name}} ({{condition.category}})</td>
+    <td>{{condition.dateRecorded | date:'shortDate'}}</td>
+    <td>{{condition.clinicalStatus}}</td>
+  </tr>
+
+</table>

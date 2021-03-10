@@ -1,0 +1,28 @@
+<div style="width: 100%">
+  <h1>Visualization</h1>
+  <div>
+    <mat-form-field  style="width: 100%">
+      <input #searchInput type="text" placeholder="search..."  matInput
+             [value]="globaldataService.getPatient() == undefined? '' : globaldataService.getPatient().name"
+             [matAutocomplete]="auto" >
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelect($event)">
+        <mat-option *ngFor="let patient of patients" [value]="patient.name" >
+          <div>{{patient.name}} ({{patient.id}})</div>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <button (click)="search()" [disabled]="globaldataService.getPatient() == undefined ||
+            hasSearch || globaldataService.getDataSource() != 'Hapi'"
+            color="primary" mat-raised-button="">Search
+    </button>
+  </div>
+  <br>
+
+  <div *ngIf="isSearched" style="margin-bottom: 1rem; height: 300px; overflow: auto;">
+    <a mat-raised-button [href] = visualURL target="_blank" color="primary">View Visualization</a>
+  </div>
+
+</div>

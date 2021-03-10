@@ -1,0 +1,20 @@
+<table style="width: 100%">
+  <tr>
+    <th style="width: 30%; text-align: center">Lab Test Name</th>
+    <th style="width: 70%; text-align: center">Sparklines</th>
+  </tr>
+  <tr *ngFor="let d of this.data">
+    <td style="text-align: center">{{d.name}}</td>
+    <td>
+      <ejs-sparkline [id]= d.id style="text-align: center"
+                     width='230px' height='30px'
+                     lineWidth= 2 fill = '#0d3c9b'
+                     [rangeBandSettings] = 'd.rangeBandSettings'
+                     [dataSource]="d.value">
+      </ejs-sparkline>
+    </td>
+    <br>
+  </tr>
+</table>
+
+
