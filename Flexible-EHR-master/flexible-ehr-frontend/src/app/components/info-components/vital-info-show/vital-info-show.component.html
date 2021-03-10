@@ -61,15 +61,17 @@
   
     </table>
   </div>-->
-  <div *ngIf="!hasSelect" style="width: 100%">
+  <div *ngIf="!hasSelect" >
     <div *ngFor="let vi of vitals">
-      {{chartOptionsDictionary[vi.code].series}}
       <apx-chart
       [series]="chartOptionsDictionary[vi.code].series"
       [chart]="chartOptionsDictionary[vi.code].chart"
       [dataLabels]="chartOptions.dataLabels"
       [stroke]="chartOptions.stroke"
       [xaxis]="{type: 'datetime'}"
+      [markers]="chartOptions.markers"
+      [yaxis]="chartOptions.yaxis"
+      [title]="{text: vi.code ,align: 'left', offsetY: 15}"
     >
     </apx-chart>
     </div>
@@ -79,7 +81,7 @@
       [title]="vi.code"
     >
     </apx-chart>-->
-    <apx-chart
+    <!--<apx-chart
     [series]="chartOptions.series"
     [chart]="chartOptions.chart"
     [xaxis]="chartOptions.xaxis"
@@ -87,6 +89,6 @@
     [grid]="chartOptions.grid"
     [stroke]="chartOptions.stroke"
     [title]="chartOptions.title"
-  ></apx-chart>
+  ></apx-chart>-->
   </div>
   

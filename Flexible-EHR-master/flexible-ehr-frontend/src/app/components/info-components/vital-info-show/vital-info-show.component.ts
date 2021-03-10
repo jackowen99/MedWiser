@@ -47,10 +47,16 @@ export class VitalInfoShowComponent implements OnInit {
         }
       },
       dataLabels: {
-        enabled: false
+        enabled: true
       },
       stroke: {
         curve: "straight"
+      },
+      markers: {
+        size: 6,
+        hover: {
+          size: 10
+        }
       },
       title: {
         text: "Product Trends by Month",
@@ -60,6 +66,29 @@ export class VitalInfoShowComponent implements OnInit {
         row: {
           colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
           opacity: 0.5
+        }
+      },
+      tooltip: {
+        followCursor: false,
+        theme: "dark",
+        x: {
+          show: false
+        },
+        marker: {
+          show: false
+        },
+        y: {
+          title: {
+            formatter: function() {
+              return "";
+            }
+          }
+        }
+      },
+      yaxis: {
+        tickAmount: 5,
+        labels: {
+          minWidth: 10
         }
       },
       xaxis: {
@@ -83,6 +112,9 @@ export class VitalInfoShowComponent implements OnInit {
     // if (this.hasSelect) {
     //   this.observations = this.dataSource.filteredData;
     // }
+    if(this.hasSelect){
+      return;
+    }
     this.chartOptionsDictionary = {};
     for(let i = 0; i < this.vitals.length; i++){
       this.chartOptionsDictionary[this.vitals[i].code] = {
@@ -96,7 +128,9 @@ export class VitalInfoShowComponent implements OnInit {
     let chart = {
       type: "line",
       id: vi.code,
-      height: 160
+      height: 160,
+      width: 500,
+      group: 'vitals'
     }
     return chart;
   }
@@ -112,12 +146,13 @@ export class VitalInfoShowComponent implements OnInit {
       let date = new Date(vi.times[i]);
       series[0].data.push(
         {
-          date: date,
-          value: vi.values[i]
+          x: date,
+          y: vi.values[i]
         }
       );
+      console.log(vi.times[i]);
     }
-    console.log(vi);
+    series[0].data.sort(function(a, b) {return b.x.getTime() - a.x.getTime()});
     return series;
   }
 
