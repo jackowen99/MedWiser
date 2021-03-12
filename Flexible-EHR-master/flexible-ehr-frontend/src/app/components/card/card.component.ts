@@ -36,6 +36,44 @@ export class CardComponent implements OnInit {
     this.updateMatrix();
   }
 
+  getHeader(s: string){
+    if(s == "patient"){
+      return "Patient Info";
+    }
+    if(s == "observation"){
+      return "Observation";
+    }
+    if(s =="vital"){
+      return "Vital Signs";
+    }
+    if(s =="medicationorder"){
+      return "Medication Order";
+    }
+    if(s =="diagnosticreport"){
+      return "Diagnostic Report";
+    }
+    if(s =="condition"){
+      return "Conditions";
+    }
+    if(s =="allergyInTolerance"){
+      return "Allergy Intolerance"
+    }
+    if(s =="documentreference"){
+      return "Document Reference";
+    }
+    if(s =="immunization"){
+      return "Immunization";
+    }
+    if(s =="procedure"){
+      return "Procedure";
+    }
+    if(s =="sparklines"){
+      return "Sparklines";
+    }
+    console.log("test");
+    return "";
+
+  }
 
   public updateScale(scaleDiff: number, newScale: number) {
 

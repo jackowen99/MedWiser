@@ -143,11 +143,13 @@ export class PanelComponent implements OnInit, AfterViewInit {
   panY: number;
 
   onMouseDown(event: MouseEvent) {
+    /*
     const rect = this.panelElem.nativeElement.getBoundingClientRect();
     this.panX = (event.clientX - rect.left);
     this.panY = (event.clientY - rect.top);
     // console.log(this.panX, this.panY);
     this.isPanning = true;
+    */
   }
 
   onMouseUp() {
