@@ -16,16 +16,14 @@
 
 </table>
 
-<table style="width: 100%" *ngIf="!hasSelect">
-  <tr>
+<div style="width: 500px;" *ngIf="!hasSelect">
+  <!--<tr>
     <th style="width: 30%; text-align: left">Clinical Status</th>
     <th style="width: 30%; text-align: left">Type</th>
     <th style="width: 30%; text-align: left">Date Time</th>
-  </tr>
-  <tr *ngFor="let document of documentreferences">
-    <td>{{document.clinicalStatus}}</td>
-    <td>{{document.type}}</td>
-    <td>{{document.DateTime}}</td>
-  </tr>
+  </tr>-->
+  <div *ngFor="let document of documentreferences" style="border-bottom: 2px solid black;">
+    <pre>{{document.attachment}}</pre>
+  </div>
 
-</table>
+</div>

@@ -9,7 +9,7 @@
   <div style = "margin-left: 85%; margin-top: 1%">
     <button mat-raised-button="" color="primary" (click)="createNewNote($event)">Add new card</button>
   </div>
-  <app-card [note]="note" *ngFor="let note of notes" cdkDrag></app-card>
+  <app-card [note]="note" *ngFor="let note of notes"></app-card>
   <!--<app-labtests-show [patient] = this.patient *ngIf="hasPatient"></app-labtests-show>-->
 </div>
 

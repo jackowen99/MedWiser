@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostBinding, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, HostBinding, Input, OnInit, Output} from '@angular/core';
 import {Note, NoteService} from '../../services/note.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import {PanelComponent} from '../panel/panel.component';
@@ -105,8 +105,64 @@ export class CardComponent implements OnInit {
       this.matrix = `matrix(1,0,0,1,${this.note.offeset.dx}, ${this.note.offeset.dy})`;
     }
 
+    this.note.offeset.dx = offset.dx;
+    this.note.offeset.dy = offset.dy;
+    
     this.updateMatrix();
   }
+
+
+  dragPosition = {x: 0, y: 0}
+
+  public cdkDragStart(event) {
+    console.log('drag start');
+    //event.source._dragRef.reset();
+    //event.source.element.nativeElement.style.transform = 'translate3d(0px, 0px, 0px)';
+  }
+
+  public cdkDragDrop(event){
+    console.log("dropped");
+  }
+
+  public cdkDragReleased(event){
+    console.log(event);
+    
+    console.log(this.getTranslate3d(event.source.element.nativeElement));
+    let transformValues = this.getTranslate3d(event.source.element.nativeElement);
+    let transformX = Number(transformValues[0].replace("px", ""));
+    let transformY = Number(transformValues[1].replace("px", ""));
+    let noteOffsetX = this.note.offeset.dx;
+    let noteOffsetY = this.note.offeset.dy;
+
+    if (this.panel.isShowDetail) {
+      this.matrix = `matrix(${this.panel.currentScale},0,0,${this.panel.currentScale},${noteOffsetX + transformX}, ${noteOffsetY + transformY})`;
+    } else {
+      this.matrix = `matrix(1,0,0,1,${noteOffsetX + transformX}, ${noteOffsetY + transformY})`;
+    }
+
+    this.note.offeset.dx = noteOffsetX + transformX;
+    this.note.offeset.dy = noteOffsetY + transformY;
+
+    
+    
+    this.updateMatrix();
+    event.source.element.nativeElement.style.transform = 'translate3d(0px, 0px, 0px)';
+    event.source._dragRef._activeTransform.x = 0;
+    event.source._dragRef._activeTransform.y = 0;
+    
+    let newPositionX = this.note.left + this.note.offeset.dx;
+    let newPositionY = this.note.top + this.note.offeset.dy;
+    //this.dragPosition = {x: newPositionX, y: newPositionY};
+    
+  }
+
+  public getTranslate3d (el) {
+    var values = el.style.transform.split(/\w+\(|\);?/);
+    if (!values[1] || !values[1].length) {
+        return [];
+    }
+    return values[1].split(/,\s?/g);
+}
 
   public updateMatrix() {
     this.elementRef.nativeElement.style.transform = this.matrix;
@@ -154,7 +210,7 @@ export class CardComponent implements OnInit {
 
   onMouseup() {
     this.isPress = false;
-
+    
   }
 
 

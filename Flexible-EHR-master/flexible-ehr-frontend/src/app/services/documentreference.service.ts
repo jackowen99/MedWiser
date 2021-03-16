@@ -45,9 +45,10 @@ export class DocumentreferenceService {
       return {
         id: resource.id,
         clinicalStatus: resource.docStatus? resource.docStatus : null,
-        type: resource.type ? resource.type.text : null,
+        type: resource.type ? resource.type : null,
         DateTime: resource.date,
-        category: resource.category? resource.category[0].coding[0].display : null
+        category: resource.category? resource.category[0].coding[0].display : null,
+        attachment: resource.content? atob(resource.content[0].attachment.data) : null
         // clinicalStatus: resource.
         // dateRecorded: resource.meta.lastUpdated,
         // clinicalStatus: resource.clinicalStatus?resource.clinicalStatus.coding[0].code : null,
@@ -60,6 +61,7 @@ export class DocumentreferenceService {
         // category: resource.category?resource.category[0].coding[0].display : null
       };
     });
+
   }
 
 }
@@ -67,9 +69,10 @@ export class DocumentreferenceService {
 export interface Documentreferences {
   id: string,
   clinicalStatus: string,
-  type: string,
+  type: any,
   DateTime: string,
   category: string,
-  isSelected: boolean
+  isSelected: boolean,
+  attachment: any
 
 }
