@@ -46,6 +46,9 @@ export class CardComponent implements OnInit {
     if(s =="vital"){
       return "Vital Signs";
     }
+    if(s =="laboratory"){
+      return "Lab Results"
+    }
     if(s =="medicationorder"){
       return "Medication Order";
     }

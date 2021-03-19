@@ -5,7 +5,7 @@ import {GlobaldataService} from './globaldata.service';
 @Injectable({
   providedIn: 'root'
 })
-export class VitalService {
+export class LaboratoryService {
 
 
   constructor(
@@ -15,7 +15,7 @@ export class VitalService {
 
   }
 
-  async searchByPatientId(id: string, cd: string): Promise<Vital[]> {
+  async searchByPatientId(id: string, cd: string): Promise<Laboratory[]> {
     // let result = [];
     if (this.globalData.getDataSource() == 'Open') {
       return await this.searchByPatientId_open(id, cd);
@@ -27,7 +27,7 @@ export class VitalService {
     // return result;
   }
 
-  async searchinit(id: string, cd: string, dataSource: string): Promise<Vital[]> {
+  async searchinit(id: string, cd: string, dataSource: string): Promise<Laboratory[]> {
     // let result = [];
     if (dataSource == 'Open') {
       return await this.searchByPatientId_open(id, cd);
@@ -40,7 +40,7 @@ export class VitalService {
   }
 
   //school server
-  async searchByPatientId_school(id: string): Promise<Vital[]> {
+  async searchByPatientId_school(id: string): Promise<Laboratory[]> {
     const result = await this.http.get<any>(`http://130.49.206.139:8080/omoponfhir3/fhir/Observation?`, {
       headers: {
         'Authorization': 'Basic Y2xpZW50X29tb3A6c2VjcmV0OjEyMzQ1'
@@ -70,8 +70,7 @@ export class VitalService {
         // value: resource.valueQuantity.value,
         // unit: resource.valueQuantity.unit
         value: null,
-        unit: null,
-        component: null
+        unit: null
       };
     });
 
@@ -89,8 +88,8 @@ export class VitalService {
   }
 
 
-  async searchByPatientId_hapi(id: string): Promise<Vital[]> {
-    const result = await this.http.get<any>('http://hapi.fhir.org/baseR4/Observation?category=vital-signs&_count=10000', {
+  async searchByPatientId_hapi(id: string): Promise<Laboratory[]> {
+    const result = await this.http.get<any>('http://hapi.fhir.org/baseR4/Observation?category=laboratory&_count=10000', {
       params: {
         patient: id
       }
@@ -113,14 +112,15 @@ export class VitalService {
         category: resource.category && resource.category[0].coding[0].display || null,
         code: resource.code && resource.code.coding[0].display || null,
         value: resource.valueQuantity ? resource.valueQuantity.value : null,
+        textValue: resource.valueCodeableConcept ? resource.valueCodeableConcept.text : null,
+        hasText: resource.valueCodeableConcept ? true : false,
         unit: resource.valueQuantity ? resource.valueQuantity.unit : null,
-        time: resource.effectiveDateTime,
-        component: resource.component || null
+        time: resource.effectiveDateTime
       };
     });
   }
 
-  async searchByPatientId_open(id: string, cd: string): Promise<Vital[]> {
+  async searchByPatientId_open(id: string, cd: string): Promise<Laboratory[]> {
     if (cd == '' || cd == null) {
       return [];
     }
@@ -160,16 +160,17 @@ export class VitalService {
 
 }
 
-export interface Vital {
+export interface Laboratory {
   id: string,
-  status: string
-  category: string
-  code: string
-  value: string
-  unit: string
-  min: number
+  status: string,
+  category: string,
+  code: string,
+  value: string,
+  textValue: string,
+  hasText: boolean,
+  unit: string,
+  min: number,
   max: number,
   time: string,
-  component: any,
   isSelected: boolean
 }

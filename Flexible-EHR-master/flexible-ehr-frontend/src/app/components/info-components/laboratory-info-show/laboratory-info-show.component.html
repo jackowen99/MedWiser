@@ -7,11 +7,11 @@
       </tr>
   
   
-      <tr *ngFor="let vi of vitals">
-        <td>{{vi.code}}</td>
+      <tr *ngFor="let la of labs">
+        <td>{{la.code}}</td>
         
         <td>
-          <mat-checkbox [(ngModel)]="vi.isSelected"></mat-checkbox>
+          <mat-checkbox [(ngModel)]="la.isSelected"></mat-checkbox>
           
         </td>
   
@@ -51,41 +51,56 @@
         <th style="width: 45%; text-align: left">Graph</th>
       </tr>
   
-      <tr *ngFor="let vi of vitals">
-        <td>{{vi.code}}</td>
-        <td [ngClass]="{'redText': vi.value < vi.min || vi.value > vi.max}">{{vi.values[0]}} {{vi.unit}}</td>
+      <tr *ngFor="let la of labs">
+        <td>{{la.code}}</td>
+        <td [ngClass]="{'redText': la.value < la.min || la.value > la.max}">{{la.values[0]}} {{la.unit}}</td>
         <td>
-          <div style="width:100px; height:100px;" (click)="showRange(vi.min, vi.max, vi.value, vi.id, $event)"></div>
+          <div style="width:100px; height:100px;" (click)="showRange(la.min, la.max, la.value, la.id, $event)"></div>
         </td>
       </tr>
   
     </table>
   </div>-->
   <div *ngIf="!hasSelect" >
-    <div *ngFor="let vi of vitals">
-      <apx-chart
-      [series]="chartOptionsDictionary[vi.code].series"
-      [chart]="chartOptionsDictionary[vi.code].chart"
+    <div *ngFor="let la of labs">
+        <table class="lab-table" style="width: 100%" *ngIf="la.hasText">
+            <div class="lab-table-title">{{la.code}}</div>
+            <tr>
+              <th style="width: 55%; text-align: left">Result</th>
+              <th style="width: 30%; text-align: left">Date</th>
+            </tr>
+        
+            <tr *ngFor="let entry of chartOptionsDictionary[la.code].series[0].data">
+              <td>{{entry.y}}</td>
+              <td>{{entry.x}}</td>
+            </tr>
+            
+          </table>
+    </div>
+    <div *ngFor="let la of labs">
+      <apx-chart *ngIf="!la.hasText"
+      [series]="chartOptionsDictionary[la.code].series"
+      [chart]="chartOptionsDictionary[la.code].chart"
       [dataLabels]="chartOptions.dataLabels"
       [stroke]="chartOptions.stroke"
       [xaxis]="{type: 'datetime'}"
       [markers]="chartOptions.markers"
       [yaxis]="{tickAmount: 5,
-      labels: {
-        minWidth: 10
-      },
-      title: {
-        text: vi.unit
-      }}
-      "
-      [title]="{text: vi.code ,align: 'left', offsetY: 15}"
+        labels: {
+          minWidth: 10
+        },
+        title: {
+          text: la.unit
+        }}
+        "
+      [title]="{text: la.code ,align: 'left', offsetY: 15}"
     >
     </apx-chart>
     </div>
-    <!--<apx-chart *ngFor="let vi of vitals"
-      [series]="getSeries(vi)"
-      [chart]="getChart(vi)"
-      [title]="vi.code"
+    <!--<apx-chart *ngFor="let la of labs"
+      [series]="getSeries(la)"
+      [chart]="getChart(la)"
+      [title]="la.code"
     >
     </apx-chart>-->
     <!--<apx-chart

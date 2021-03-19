@@ -24,6 +24,9 @@ cdkDrag>
         <ng-container *ngSwitchCase="'vital'">
           <app-vital-info-show [hasSelect]="false" [vitals]="note.cardOption.data"></app-vital-info-show>
         </ng-container>
+        <ng-container *ngSwitchCase="'laboratory'">
+          <app-laboratory-info-show [hasSelect]="false" [labs]="note.cardOption.data"></app-laboratory-info-show>
+        </ng-container>
         <ng-container *ngSwitchCase="'medicationorder'">
           <app-medication-info-show [hasSelect]="false" [medicationOrders]="note.cardOption.data"></app-medication-info-show>
         </ng-container>

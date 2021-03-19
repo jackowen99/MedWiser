@@ -23,6 +23,13 @@
     </ng-template>
     <app-vital-info></app-vital-info>
   </mat-tab>
+  <mat-tab [disabled] = "globaldataService.getPatient() == undefined" >
+    <ng-template mat-tab-label>
+      <mat-icon class="icon-prefix">science</mat-icon>
+      <span>Lab Results</span>
+    </ng-template>
+    <app-laboratory-info></app-laboratory-info>
+  </mat-tab>
   <mat-tab [disabled] = "globaldataService.getPatient() == undefined">
     <ng-template mat-tab-label>
       <mat-icon class="icon-prefix">bookmark_border</mat-icon>

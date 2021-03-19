@@ -89,7 +89,7 @@ export class ObservationService {
 
 
   async searchByPatientId_hapi(id: string): Promise<Observation[]> {
-    const result = await this.http.get<any>('http://hapi.fhir.org/baseR4/Observation', {
+    const result = await this.http.get<any>('http://hapi.fhir.org/baseR4/Observation?_count=10000', {
       params: {
         patient: id
       }

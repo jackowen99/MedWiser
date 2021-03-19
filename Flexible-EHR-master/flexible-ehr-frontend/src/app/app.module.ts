@@ -86,6 +86,9 @@ import { VitalInfoComponent } from './components/info-components/vital-info/vita
 import { VitalInfoShowComponent } from './components/info-components/vital-info-show/vital-info-show.component';
 import {VitalService} from './services/vital.service';
 import { NgApexchartsModule } from "ng-apexcharts";
+import { LaboratoryInfoComponent } from './components/info-components/laboratory-info/laboratory-info.component';
+import { LaboratoryInfoShowComponent } from './components/info-components/laboratory-info-show/laboratory-info-show.component';
+import { LaboratoryService } from './services/laboratory.service';
 
 @NgModule({
   declarations: [
@@ -113,6 +116,8 @@ import { NgApexchartsModule } from "ng-apexcharts";
     DatasourcechoiceComponent,
     LabtestsComponent,
     LabtestsShowComponent,
+    LaboratoryInfoComponent,
+    LaboratoryInfoShowComponent,
     SearchchoiceComponent,
     HomePageComponent,
     LoginComponent,
@@ -184,7 +189,8 @@ import { NgApexchartsModule } from "ng-apexcharts";
     GlobaldataService,
     RangeBand,
     RangeAbbre,
-    VitalService
+    VitalService,
+    LaboratoryService
   ],
   entryComponents: [
     InfoSelectDialogComponent,

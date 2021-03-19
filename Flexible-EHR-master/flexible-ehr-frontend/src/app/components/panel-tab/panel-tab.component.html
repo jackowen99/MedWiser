@@ -11,7 +11,7 @@
 
     </app-quest-nav>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content style="overflow: hidden;">
     <div class="panel-title-bar">
       <span style="padding: 0rem 0.5rem;cursor: pointer;display: inline-block" (click)="nav.toggle()"><mat-icon style="vertical-align: -50%;">search</mat-icon></span>
       <app-panel-title *ngFor="let panel of panelService.panels" [panel]="panel"></app-panel-title>

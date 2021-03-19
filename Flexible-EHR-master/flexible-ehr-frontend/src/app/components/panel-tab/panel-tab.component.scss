@@ -1,7 +1,10 @@
 .panel-title-bar {
   display: flex;
   background: lightgray;
-  overflow: scroll;
+}
+
+.panel-content {
+   overflow: none !important;
 }
 
 //::-webkit-scrollbar {
