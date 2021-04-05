@@ -1,0 +1,27 @@
+  <!-- The Index page we see at the beginning -->
+<mat-sidenav-container style="height: 100%">
+  <mat-sidenav mode="slide" style="width: 300px" #nav="matSidenav">
+    <app-search>
+
+    </app-search>
+  </mat-sidenav>
+
+  <mat-sidenav [opened]="true" position="end" mode="side" style="width: 300px" #questNav="matSidenav">
+    <app-quest-nav>
+
+    </app-quest-nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="panel-title-bar">
+      <span style="padding: 0rem 0.5rem;cursor: pointer;display: inline-block" (click)="nav.toggle()"><mat-icon style="vertical-align: -50%;">search</mat-icon></span>
+      <app-panel-title *ngFor="let panel of panelService.panels" [panel]="panel"></app-panel-title>
+      <app-panel-title-add></app-panel-title-add>
+    </div>
+    <div style="height: 100%">
+      <ng-container *ngFor="let panel of panelService.panels">
+        <app-panel *ngIf="panel.isActive" [panel]="panel"></app-panel>
+      </ng-container>
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

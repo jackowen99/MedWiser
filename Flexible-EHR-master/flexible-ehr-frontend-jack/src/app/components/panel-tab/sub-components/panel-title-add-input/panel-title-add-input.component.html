@@ -1,0 +1,23 @@
+
+<ng-template [ngIf]="step == 0">
+  <div *ngFor="let panel of panelSelections">
+    <button mat-button (click)="chooseStyle(panel.id)">{{panel.title}}</button>
+  </div>
+  <div *ngIf="panelSelections.length == 0 || panelSelections==undefined">
+    <h1>Please add a new panel first</h1>
+  </div>
+</ng-template>
+
+<ng-template [ngIf]="step != 0">
+  <div>
+    <app-patient-info #patientInfo [isAddPatient] = "false"></app-patient-info>
+  </div>
+  <div>
+    <button mat-raised-button="" color="primary" [disabled]="canFinish" (click)="runPatientInfo()">Add</button>
+  </div>
+  <br>
+  <div >
+    <button mat-raised-button="" color="primary" [disabled]="!canFinish" (click)="addAllNotes()">finish</button>
+  </div>
+</ng-template>
+

@@ -1,0 +1,348 @@
+<div style="padding: 5px;text-overflow: ellipsis;max-width: 370px; max-height: 200px" cdkDrag>
+
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Basic Metabolic Panel
+        </mat-panel-title>
+        <mat-panel-description>
+          {{!(dataSource && dataSource[0] && dataSource[0].chooseEle) ? 0 : dataSource[0].chooseEle.length}} records
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <ng-container>
+        <div *ngIf="dataSource && dataSource[0] && dataSource[0].chooseEle ">
+          <table style="width: 100%">
+            <tr>
+              <th style="width: 25%; text-align: left">Name</th>
+              <th style="width: 25%; text-align: left">Value</th>
+              <th style="width: 25%; text-align: left">Range</th>
+              <th style="width: 25%; text-align: left">Graph</th>
+            </tr>
+            <tr *ngFor="let ob of dataSource[0].chooseEle">
+              <td>{{ob.name}}</td>
+              <td>{{ob.cur}}/ {{ob.unit}}</td>
+              <!--
+              <td [ngClass]="{'redText': ob.val < ob.min || ob.val > ob.max}">{{ob.min}} - {{ob.max}}/ {{ob.unit}}</td>
+              -->
+              <td><p>we do not have this part</p></td>
+              <td>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </ng-container>
+
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          CBC
+        </mat-panel-title>
+        <mat-panel-description>
+          {{!(dataSource && dataSource[1] && dataSource[1].chooseEle) ? 0 : dataSource[1].chooseEle.length}} records
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <ng-container>
+        <div *ngIf="dataSource && dataSource[1] && dataSource[1].chooseEle">
+          <table style="width: 100%">
+            <tr>
+              <th style="width: 25%; text-align: left">Name</th>
+              <th style="width: 25%; text-align: left">Value</th>
+              <th style="width: 25%; text-align: left">Range</th>
+              <th style="width: 25%; text-align: left">Graph</th>
+            </tr>
+            <tr *ngFor="let ob of dataSource[1].chooseEle">
+              <td>{{ob.name}}</td>
+              <td>{{ob.cur}}/ {{ob.unit}}</td>
+              <!--
+              <td [ngClass]="{'redText': ob.val < ob.min || ob.val > ob.max}">{{ob.min}} - {{ob.max}}/ {{ob.unit}}</td>
+              -->
+              <td><p>we do not have this part</p></td>
+              <td>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </ng-container>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          CBC cells
+        </mat-panel-title>
+        <mat-panel-description>
+          {{!(dataSource && dataSource[2] && dataSource[2].chooseEle) ? 0 : dataSource[2].chooseEle.length}} records
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <ng-container>
+        <div *ngIf="dataSource && dataSource[2] && dataSource[2].chooseEle">
+          <table style="width: 100%">
+            <tr>
+              <th style="width: 25%; text-align: left">Name</th>
+              <th style="width: 25%; text-align: left">Value</th>
+              <th style="width: 25%; text-align: left">Range</th>
+              <th style="width: 25%; text-align: left">Graph</th>
+            </tr>
+            <tr *ngFor="let ob of dataSource[2].chooseEle">
+              <td>{{ob.name}}</td>
+              <td>{{ob.cur}}/ {{ob.unit}}</td>
+              <!--
+              <td [ngClass]="{'redText': ob.val < ob.min || ob.val > ob.max}">{{ob.min}} - {{ob.max}}/ {{ob.unit}}</td>
+              -->
+              <td><p>we do not have this part</p></td>
+              <td>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </ng-container>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          eGFT (glomerular filtration rate)
+        </mat-panel-title>
+        <mat-panel-description>
+          {{!(dataSource && dataSource[3] && dataSource[3].chooseEle) ? 0 : dataSource[3].chooseEle.length}} records
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <ng-container>
+        <div *ngIf="dataSource && dataSource[3] && dataSource[3].chooseEle">
+          <table style="width: 100%">
+            <tr>
+              <th style="width: 25%; text-align: left">Name</th>
+              <th style="width: 25%; text-align: left">Value</th>
+              <th style="width: 25%; text-align: left">Range</th>
+              <th style="width: 25%; text-align: left">Graph</th>
+            </tr>
+            <tr *ngFor="let ob of dataSource[3].chooseEle">
+              <td>{{ob.name}}</td>
+              <td>{{ob.cur}}/ {{ob.unit}}</td>
+              <!--
+              <td [ngClass]="{'redText': ob.val < ob.min || ob.val > ob.max}">{{ob.min}} - {{ob.max}}/ {{ob.unit}}</td>
+              -->
+              <td><p>we do not have this part</p></td>
+              <td>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </ng-container>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Troponin
+        </mat-panel-title>
+        <mat-panel-description>
+          {{!(dataSource && dataSource[4] && dataSource[4].chooseEle) ? 0 : dataSource[4].chooseEle.length}} records
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <ng-container>
+        <div *ngIf="dataSource && dataSource[4] && dataSource[4].chooseEle">
+          <table style="width: 100%">
+            <tr>
+              <th style="width: 25%; text-align: left">Name</th>
+              <th style="width: 25%; text-align: left">Value</th>
+              <th style="width: 25%; text-align: left">Range</th>
+              <th style="width: 25%; text-align: left">Graph</th>
+            </tr>
+            <tr *ngFor="let ob of dataSource[4].chooseEle">
+              <td>{{ob.name}}</td>
+              <td>{{ob.cur}}/ {{ob.unit}}</td>
+              <!--
+              <td [ngClass]="{'redText': ob.val < ob.min || ob.val > ob.max}">{{ob.min}} - {{ob.max}}/ {{ob.unit}}</td>
+              -->
+              <td><p>we do not have this part</p></td>
+              <td>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </ng-container>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          CPK
+        </mat-panel-title>
+        <mat-panel-description>
+          {{!(dataSource && dataSource[5] && dataSource[5].chooseEle) ? 0 : dataSource[5].chooseEle.length}} records
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <ng-container>
+        <div *ngIf="dataSource && dataSource[5] && dataSource[5].chooseEle">
+          <table style="width: 100%">
+            <tr>
+              <th style="width: 25%; text-align: left">Name</th>
+              <th style="width: 25%; text-align: left">Value</th>
+              <th style="width: 25%; text-align: left">Range</th>
+              <th style="width: 25%; text-align: left">Graph</th>
+            </tr>
+            <tr *ngFor="let ob of dataSource[5].chooseEle">
+              <td>{{ob.name}}</td>
+              <td>{{ob.cur}}/ {{ob.unit}}</td>
+              <!--
+              <td [ngClass]="{'redText': ob.val < ob.min || ob.val > ob.max}">{{ob.min}} - {{ob.max}}/ {{ob.unit}}</td>
+              -->
+              <td><p>we do not have this part</p></td>
+              <td>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </ng-container>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          LFT
+        </mat-panel-title>
+        <mat-panel-description>
+          {{!(dataSource && dataSource[6] && dataSource[6].chooseEle) ? 0 : dataSource[6].chooseEle.length}} records
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <ng-container>
+        <div *ngIf="dataSource && dataSource[6] && dataSource[6].chooseEle">
+          <table style="width: 100%">
+            <tr>
+              <th style="width: 25%; text-align: left">Name</th>
+              <th style="width: 25%; text-align: left">Value</th>
+              <th style="width: 25%; text-align: left">Range</th>
+              <th style="width: 25%; text-align: left">Graph</th>
+            </tr>
+            <tr *ngFor="let ob of dataSource[6].chooseEle">
+              <td>{{ob.name}}</td>
+              <td>{{ob.cur}}/ {{ob.unit}}</td>
+              <!--
+              <td [ngClass]="{'redText': ob.val < ob.min || ob.val > ob.max}">{{ob.min}} - {{ob.max}}/ {{ob.unit}}</td>
+              -->
+              <td><p>we do not have this part</p></td>
+              <td>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </ng-container>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Urinalysis
+        </mat-panel-title>
+        <mat-panel-description>
+          {{!(dataSource && dataSource[7] && dataSource[7].chooseEle) ? 0 : dataSource[7].chooseEle.length}} records
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <ng-container>
+        <div *ngIf="dataSource && dataSource[7] && dataSource[7].chooseEle">
+          <table style="width: 100%">
+            <tr>
+              <th style="width: 25%; text-align: left">Name</th>
+              <th style="width: 25%; text-align: left">Value</th>
+              <th style="width: 25%; text-align: left">Range</th>
+              <th style="width: 25%; text-align: left">Graph</th>
+            </tr>
+            <tr *ngFor="let ob of dataSource[7].chooseEle">
+              <td>{{ob.name}}</td>
+              <td>{{ob.cur}}/ {{ob.unit}}</td>
+              <!--
+              <td [ngClass]="{'redText': ob.val < ob.min || ob.val > ob.max}">{{ob.min}} - {{ob.max}}/ {{ob.unit}}</td>
+              -->
+              <td><p>we do not have this part</p></td>
+              <td>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </ng-container>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          RBC
+        </mat-panel-title>
+        <mat-panel-description>
+          {{!(dataSource && dataSource[8] && dataSource[8].chooseEle) ? 0 : dataSource[8].chooseEle.length}} records
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <ng-container>
+        <div *ngIf="dataSource && dataSource[8] && dataSource[8].chooseEle">
+          <table style="width: 100%">
+            <tr>
+              <th style="width: 25%; text-align: left">Name</th>
+              <th style="width: 25%; text-align: left">Value</th>
+              <th style="width: 25%; text-align: left">Range</th>
+              <th style="width: 25%; text-align: left">Graph</th>
+            </tr>
+            <tr *ngFor="let ob of dataSource[8].chooseEle">
+              <td>{{ob.name}}</td>
+              <td>{{ob.cur}}/ {{ob.unit}}</td>
+              <!--
+              <td [ngClass]="{'redText': ob.val < ob.min || ob.val > ob.max}">{{ob.min}} - {{ob.max}}/ {{ob.unit}}</td>
+              -->
+              <td><p>we do not have this part</p></td>
+              <td>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </ng-container>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          ABG
+        </mat-panel-title>
+        <mat-panel-description>
+          {{!(dataSource && dataSource[9] && dataSource[9].chooseEle) ? 0 : dataSource[9].chooseEle.length}} records
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <ng-container>
+        <div *ngIf="dataSource && dataSource[9] && dataSource[9].chooseEle">
+          <table style="width: 100%">
+            <tr>
+              <th style="width: 25%; text-align: left">Name</th>
+              <th style="width: 25%; text-align: left">Value</th>
+              <th style="width: 25%; text-align: left">Range</th>
+              <th style="width: 25%; text-align: left">Graph</th>
+            </tr>
+            <tr *ngFor="let ob of dataSource[9].chooseEle">
+              <td>{{ob.name}}</td>
+              <td>{{ob.cur}}/ {{ob.unit}}</td>
+              <!--
+              <td [ngClass]="{'redText': ob.val < ob.min || ob.val > ob.max}">{{ob.min}} - {{ob.max}}/ {{ob.unit}}</td>
+              -->
+              <td><p>we do not have this part</p></td>
+              <td>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </ng-container>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+
+
+</div>

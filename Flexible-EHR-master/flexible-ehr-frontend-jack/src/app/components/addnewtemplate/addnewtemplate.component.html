@@ -1,0 +1,36 @@
+<div>
+  <mat-form-field style="width: 100%">
+    <input matInput #templateNameInput [formControl]="templateName" placeholder="Please Enter Your Template Name" />
+    <mat-error *ngIf="templateName.invalid">{{getErrorMessage()}}</mat-error>
+    <mat-hint *ngIf="!templateName.invalid && isDuplicate">Template Name already exists</mat-hint>
+    <mat-hint *ngIf="!templateName.invalid && !isDuplicate">Template Name Can Apply</mat-hint>
+  </mat-form-field>
+
+    <li style="list-style-type:none;">
+      <mat-checkbox [formControl]="patient" class="example-margin">Patient Info</mat-checkbox>
+    </li>
+    <li style="list-style-type:none;">
+      <mat-checkbox [formControl]="observation" class="example-margin">Observation</mat-checkbox>
+    </li>
+    <li style="list-style-type:none;">
+      <mat-checkbox [formControl]="vital" class="example-margin">Vital Signs</mat-checkbox>
+    </li>
+    <li style="list-style-type:none;">
+      <mat-checkbox [formControl]="medicationorder" class="example-margin">Medication Order</mat-checkbox>
+    </li>
+    <li style="list-style-type:none;">
+      <mat-checkbox [formControl]="diagnosticreport" class="example-margin">Diagnostic Report</mat-checkbox>
+    </li>
+  <li style="list-style-type:none;">
+    <mat-checkbox [formControl]="condition" class="example-margin">Condition</mat-checkbox>
+  </li>
+  <li style="list-style-type:none;">
+  <mat-slide-toggle [formControl]="isPublic">isPublic</mat-slide-toggle>
+  </li>
+</div>
+<br>
+<div>
+  <button mat-raised-button="" color="warn" (click)="add()" [disabled]="templateName.invalid || this.isDuplicate">
+    Add
+  </button>
+</div>
