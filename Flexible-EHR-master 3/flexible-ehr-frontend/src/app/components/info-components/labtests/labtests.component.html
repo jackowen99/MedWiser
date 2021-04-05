@@ -1,0 +1,158 @@
+<div style="">
+  <h1>Lab Test</h1>
+  <mat-accordion>
+    <mat-expansion-panel (afterCollapse)="panelOpenState[0] = false" (afterExpand)="panelOpenState[0] = true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Basic Metabolic Panel
+        </mat-panel-title>
+        <mat-panel-description>
+          Currently I am {{panelOpenState[0] ? 'open' : 'closed'}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="radio-button" *ngFor="let element of Basic_Metabolic_Panel">
+        <mat-checkbox (change)="onChangeCategory($event, element,0)">{{element.name}}</mat-checkbox>
+      </div>
+
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (afterCollapse)="panelOpenState[1] = false" (afterExpand)="panelOpenState[1] = true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          CBC
+        </mat-panel-title>
+        <mat-panel-description>
+          Currently I am {{panelOpenState[1] ? 'open' : 'closed'}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="radio-button" *ngFor="let element of CBC">
+        <mat-checkbox (change)="onChangeCategory($event, element,1)">{{element.name}}</mat-checkbox>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (afterCollapse)="panelOpenState[2] = false" (afterExpand)="panelOpenState[2] = true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          CBC cells
+        </mat-panel-title>
+        <mat-panel-description>
+          Currently I am {{panelOpenState[2] ? 'open' : 'closed'}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="radio-button" *ngFor="let element of CBC_cells">
+        <mat-checkbox (change)="onChangeCategory($event, element,2)">{{element.name}}</mat-checkbox>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (afterCollapse)="panelOpenState[3] = false" (afterExpand)="panelOpenState[3] = true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          eGFT (glomerular filtration rate)
+        </mat-panel-title>
+        <mat-panel-description>
+          Currently I am {{panelOpenState[3] ? 'open' : 'closed'}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="radio-button" *ngFor="let element of eGFT">
+        <mat-checkbox (change)="onChangeCategory($event, element,3)">{{element.name}}</mat-checkbox>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (afterCollapse)="panelOpenState[4] = false" (afterExpand)="panelOpenState[4] = true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Troponin
+        </mat-panel-title>
+        <mat-panel-description>
+          Currently I am {{panelOpenState[4] ? 'open' : 'closed'}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="radio-button" *ngFor="let element of Troponin">
+        <mat-checkbox (change)="onChangeCategory($event, element,4)">{{element.name}}</mat-checkbox>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (afterCollapse)="panelOpenState[5] = false" (afterExpand)="panelOpenState[5] = true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          CPK
+        </mat-panel-title>
+        <mat-panel-description>
+          Currently I am {{panelOpenState[5] ? 'open' : 'closed'}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="radio-button" *ngFor="let element of CPK">
+        <mat-checkbox (change)="onChangeCategory($event, element,5)">{{element.name}}</mat-checkbox>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (afterCollapse)="panelOpenState[6] = false" (afterExpand)="panelOpenState[6] = true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          LFT
+        </mat-panel-title>
+        <mat-panel-description>
+          Currently I am {{panelOpenState[6] ? 'open' : 'closed'}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="radio-button" *ngFor="let element of LFT">
+        <mat-checkbox (change)="onChangeCategory($event, element,6)">{{element.name}}</mat-checkbox>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (afterCollapse)="panelOpenState[7] = false" (afterExpand)="panelOpenState[7] = true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Urinalysis
+        </mat-panel-title>
+        <mat-panel-description>
+          Currently I am {{panelOpenState[7] ? 'open' : 'closed'}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="radio-button" *ngFor="let element of Urinalysis">
+        <mat-checkbox (change)="onChangeCategory($event, element,7)">{{element.name}}</mat-checkbox>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (afterCollapse)="panelOpenState[8] = false" (afterExpand)="panelOpenState[8] = true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          RBC
+        </mat-panel-title>
+        <mat-panel-description>
+          Currently I am {{panelOpenState[8] ? 'open' : 'closed'}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="radio-button" *ngFor="let element of RBC">
+        <mat-checkbox (change)="onChangeCategory($event, element,8)">{{element.name}}</mat-checkbox>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (afterCollapse)="panelOpenState[9] = false" (afterExpand)="panelOpenState[9] = true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          ABG
+        </mat-panel-title>
+        <mat-panel-description>
+          Currently I am {{panelOpenState[9] ? 'open' : 'closed'}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="radio-button" *ngFor="let element of ABG">
+        <mat-checkbox (change)="onChangeCategory($event, element,9)">{{element.name}}</mat-checkbox>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <button style="margin-top: 20px;" mat-stroked-button color="primary">next</button>
+</div>

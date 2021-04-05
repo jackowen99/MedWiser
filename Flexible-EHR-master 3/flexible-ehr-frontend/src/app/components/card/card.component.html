@@ -1,0 +1,73 @@
+<div >
+  <div *ngIf="panel.isShowDetail" style="position: relative;">
+    <mat-card [style.background]="note.color" style="min-width: 120%; max-width:200%; max-height: 650px; overflow: auto;">
+      <div cdkDragHandle>
+        <h1 style="margin-top: 0px;">{{getHeader(note.cardOption.type)}}</h1>
+        <button mat-button="" style="position: absolute; right: 0px; top: 0px; z-index: 10" (click)="removeNote()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+      
+      <ng-container [ngSwitch]="note.cardOption.type">
+        <ng-container *ngSwitchCase="'patient'">
+<!--          <app-patient-info-show [patient]="note.cardOption.data"></app-patient-info-show>-->
+          <app-patient-info-show [patient]="note.cardOption.data"></app-patient-info-show>
+        </ng-container>
+        <ng-container *ngSwitchCase="'observation'">
+          <app-observation-info-show [hasSelect]="false" [observations]="note.cardOption.data"></app-observation-info-show>
+        </ng-container>
+        <ng-container *ngSwitchCase="'vital'">
+          <app-vital-info-show [hasSelect]="false" [vitals]="note.cardOption.data"></app-vital-info-show>
+        </ng-container>
+        <ng-container *ngSwitchCase="'medicationorder'">
+          <app-medication-info-show [hasSelect]="false" [medicationOrders]="note.cardOption.data"></app-medication-info-show>
+        </ng-container>
+        <ng-container *ngSwitchCase="'diagnosticreport'">
+          <app-diagnosticreport-info-show [hasSelect]="false" [diagnosticReports]="note.cardOption.data"></app-diagnosticreport-info-show>
+        </ng-container>
+        <ng-container *ngSwitchCase="'condition'">
+          <app-conditions-info-show [hasSelect]="false" [conditions]="note.cardOption.data"></app-conditions-info-show>
+        </ng-container>
+        <ng-container *ngSwitchCase="'allergyInTolerance'">
+         <app-allergy-in-tolerance-info-show [hasSelect]="false" [allergyInTolerances]="note.cardOption.data"></app-allergy-in-tolerance-info-show>
+        </ng-container>
+        <ng-container *ngSwitchCase="'documentreference'">
+          <app-documentreference-info-show [hasSelect]="false" [documentreferences]="note.cardOption.data"></app-documentreference-info-show>
+        </ng-container>
+        <ng-container *ngSwitchCase="'immunization'">
+          <app-immunization-info-show [hasSelect]="false" [immunizations]="note.cardOption.data"></app-immunization-info-show>
+        </ng-container>
+        <ng-container *ngSwitchCase="'procedure'">
+          <app-procedure-info-show [hasSelect]="false" [procedures]="note.cardOption.data"></app-procedure-info-show>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'sparklines'">
+          <app-sparklines-info-show [hasSelect]="false" [sparklineDetails]="note.cardOption.data"></app-sparklines-info-show>
+        </ng-container>
+      </ng-container>
+      <br>
+      <div>
+        <span *ngFor="let color of colorService.colors"
+              style="display: inline-block;width: 20px; height:20px; margin-right: 10px; box-shadow: gray 0px 0px 5px"
+              [style.background]="color" (click)="changeColor(color);$event.stopPropagation()"></span>
+      </div>
+    </mat-card>
+
+  </div>
+
+
+
+
+  <div [style.background]="note.color" *ngIf="!panel.isShowDetail" style="padding: 5px;text-overflow: ellipsis;max-width: 100px">
+    <ng-container [ngSwitch]="note.cardOption.type">
+      <ng-container *ngSwitchCase="'patient'">
+        {{note.cardOption.data.name}}
+      </ng-container>
+      <ng-container *ngSwitchCase="'observation'">
+        {{observationSummary()}}
+      </ng-container>
+    </ng-container>
+
+  </div>
+
+</div>
