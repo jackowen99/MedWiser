@@ -42,13 +42,23 @@ export class DocumentreferenceService {
     return entry.map((data) => {
       const resource = data.resource;
 
+      let attachmentDecoded;
+      if(resource.content){
+        attachmentDecoded = atob(resource.content[0].attachment.data);
+        if(attachmentDecoded[attachmentDecoded.length - 1] == "=" && attachmentDecoded[attachmentDecoded.length - 2] == "="){
+          //needs decoded again. HAPI data sometimes had double encoded text
+          attachmentDecoded = atob(attachmentDecoded);
+        }
+      }
+       
+
       return {
         id: resource.id,
         clinicalStatus: resource.docStatus? resource.docStatus : null,
         type: resource.type ? resource.type : null,
         DateTime: resource.date,
         category: resource.category? resource.category[0].coding[0].display : null,
-        attachment: resource.content? atob(resource.content[0].attachment.data) : null
+        attachment: attachmentDecoded? attachmentDecoded : null
         // clinicalStatus: resource.
         // dateRecorded: resource.meta.lastUpdated,
         // clinicalStatus: resource.clinicalStatus?resource.clinicalStatus.coding[0].code : null,

@@ -1,0 +1,25 @@
+<div style="width: 100%">
+  <h1>Patient Info</h1>
+  <app-datasourcechoice></app-datasourcechoice>
+
+  <div>
+    <mat-form-field style="width: 100%">
+      <input #searchInput type="text" placeholder="search..." matInput
+             [value]="globaldataService.getPatient() == undefined? '' : globaldataService.getPatient().name"
+             [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelect($event)">
+        <mat-option *ngFor="let patient of patients" [value]="patient.name">
+          <div>{{patient.name}} ({{patient.id}})</div>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="selectedPatient" style="margin-bottom: 1rem">
+    <app-patient-info-show [patient]="selectedPatient"></app-patient-info-show>
+  </div>
+
+  <div *ngIf="isAddPatient">
+    <button [disabled]="this.selectedPatient == null" mat-raised-button="" color="primary" (click)="addPatient()">Add</button>
+  </div>
+</div>

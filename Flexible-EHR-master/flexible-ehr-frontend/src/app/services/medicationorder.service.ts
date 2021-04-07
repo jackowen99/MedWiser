@@ -101,7 +101,7 @@ export class MedicationorderService {
       return [];
     }
 
-    const medication_statement_result = await this.http.get<any>('http://hapi.fhir.org/baseR4/MedicationStatement', {
+    const medication_statement_result = await this.http.get<any>('http://hapi.fhir.org/baseR4/MedicationRequest', {
       params: {
         patient: id
       }
@@ -125,15 +125,19 @@ export class MedicationorderService {
         MedicationOrder_id: resource.id || 'N/A',
         patient: resource.subject.reference,
         medicationReference: resource.medicationCodeableConcept ? resource.medicationCodeableConcept.coding[0].display : 'N/A',
-        dosageInstruction_name: resource.medicationCodeableConcept ? resource.medicationCodeableConcept.coding[0].text : 'N/A',
+        status: resource.status ? resource.status : "N/A",
+        //dosageInstruction_name: resource.medicationCodeableConcept ? resource.medicationCodeableConcept.coding[0].text : 'N/A',
+        dosageInstruction_name: resource.dosageInstruction ? resource.dosageInstruction[0].text : 'N/A',
         dosageInstruction_code: resource.dosage ? resource.dosage[0].text : 'N/A',
-        dosageInstruction_timing_period: resource.effectiveDateTime || 'N/A',
+        //dosageInstruction_timing_period: resource.effectiveDateTime || 'N/A',
+        dosageInstruction_timing_period: resource.authoredOn || 'N/A',
         dosageInstruction_timing_periodUnits: 'N/A',
         dosageInstruction_timing_boundsPeriod_start: resource.lastUpdated,
-        dosageInstruction_timing_boundsPeriod_end: new Date(),
+        //dosageInstruction_timing_boundsPeriod_end: new Date(),
+        dosageInstruction_timing_boundsPeriod_end: resource.authoredOn || 'N/A',
         //error
         // dosageInstruction_dosQuantity_value: resource.dosage ? resource.dosage[0].text : "N/A",
-        dosageInstruction_dosQuantity_value: resource.dosage ? resource.dosage[0].text : 'N/A',
+        dosageInstruction_dosQuantity_value: resource.dosageInstruction ? resource.dosageInstruction[0].doseAndRate[0].doseQuantity.value : 'N/A',
         dosageInstruction_dosQuantity_unit: 'N/A',
         // //error
         // identifier_system:resource.statusReason[0].coding[0].system || "N/A",
@@ -193,6 +197,7 @@ export interface MedicationOrder {
   MedicationOrder_id: string,
   patient: string,
   medicationReference: string,
+  status: string,
   dosageInstruction_name: string,
   dosageInstruction_code: string,
   dosageInstruction_timing_period: number,

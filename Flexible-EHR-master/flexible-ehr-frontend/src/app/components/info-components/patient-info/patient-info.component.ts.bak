@@ -20,16 +20,12 @@ export class PatientInfoComponent implements OnInit, AfterViewInit {
   @ViewChild('searchInput')
   searchInput: ElementRef<HTMLInputElement>;
 
-  @ViewChild('searchIdInput')
-  searchIdInput: ElementRef<HTMLInputElement>;
-
   @Input() isAddPatient: boolean;
 
   patients: Patient[] = [];
 
   public selectedPatient: Patient = null;
-  public practitionerId: string = '';
-  public patientList: any[] = [];
+
 
   constructor(
     private patientService: PatientService,
@@ -47,7 +43,7 @@ export class PatientInfoComponent implements OnInit, AfterViewInit {
   }
 
   onSelect($event: MatAutocompleteSelectedEvent) {
-    $event.source.options.map(async (value, i) => {
+    $event.source.options.forEach((value, i) => {
       if (value.selected) {
         this.selectedPatient = this.patients[i];
         this.globalDataService.setPatient(this.selectedPatient);
@@ -65,17 +61,7 @@ export class PatientInfoComponent implements OnInit, AfterViewInit {
       } else {
         this.patients = [];
       }
-    });
 
-    fromEvent(this.searchIdInput.nativeElement, 'keyup').pipe(
-      map(x => this.searchIdInput.nativeElement.value),
-      debounceTime(200)
-    ).subscribe(async (data) => {
-      if (data) {
-        this.practitionerId = data
-      } else {
-        this.practitionerId = null
-      }
     });
   }
 
@@ -96,21 +82,5 @@ export class PatientInfoComponent implements OnInit, AfterViewInit {
     }
   }
 
-  async searchPatients() {
-    const patientIds = await this.patientService.getPatientsByPractitionerId(this.practitionerId)
-    
-    const patientData = await this.patientService.getPatientListByIds(patientIds)
-    this.patientList = patientData.map(patient => {
-      const gender = patient.gender || '-'
-      const birthDate = patient.birthDate || '-'
-      const patientNameObj = patient && patient.name ? patient.name[0] : '-'
-      const name = `${patientNameObj.prefix} ${patientNameObj.given} ${patientNameObj.family}`;
-      const country = patient.address[0].country;
-      const city = patient.address[0].city;
-      const state = patient.address[0].state;
-      const postalCode = patient.address[0].postalCode;
-      const phone = patient.telecom && patient.telecom[0] ? patient.telecom[0].value : '-'
-      return { gender, birthDate, name, country, city, state, postalCode, phone }
-    })
-  }
+
 }

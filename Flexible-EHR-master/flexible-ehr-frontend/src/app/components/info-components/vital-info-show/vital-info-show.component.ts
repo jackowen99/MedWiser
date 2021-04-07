@@ -141,6 +141,15 @@ export class VitalInfoShowComponent implements OnInit {
       name: vi.code,
       data: []
     }];
+    if(vi.secondaryValues[0] != ""){
+      series.push(
+        {
+          name: "Systolic",
+          data: []
+        }
+      );
+      series[0].name = "Diastolic";
+    }
     
     for(let i = 0; i < vi.values.length; i++){
       let date = new Date(vi.times[i]);
@@ -151,8 +160,22 @@ export class VitalInfoShowComponent implements OnInit {
         }
       );
       console.log(vi.times[i]);
+      if(vi.secondaryValues[0] != ""){
+        series[1].data.push(
+          {
+            x: date,
+            y: vi.secondaryValues[i]
+          }
+        )
+      }
     }
+    console.log(vi);
     series[0].data.sort(function(a, b) {return b.x.getTime() - a.x.getTime()});
+    if(vi.secondaryValues[0] != ""){
+      series[1].data.sort(function(a, b) {return b.x.getTime() - a.x.getTime()});
+      series.reverse();
+    }
+    
     return series;
   }
 

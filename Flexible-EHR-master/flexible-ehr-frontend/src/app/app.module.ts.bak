@@ -25,9 +25,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SafePipe} from './pipes/safe.pipe';
 import {ColorService} from './services/color.service';
 import {InfoSelectDialogComponent} from './dialog/info-select-dialog/info-select-dialog.component';
-import {PatientInfoDialogComponent} from './dialog/patient-info-dialog/patient-info-dialog.component';
 import {PatientInfoComponent} from './components/info-components/patient-info/patient-info.component';
-import {PatientListComponent} from './components/info-components/patient-list/patient-list.component';
 import {HttpClientModule} from '@angular/common/http';
 import {PatientInfoShowComponent} from './components/info-components/patient-info-show/patient-info-show.component';
 import {PanelTabComponent} from './components/panel-tab/panel-tab.component';
@@ -99,9 +97,7 @@ import { LaboratoryService } from './services/laboratory.service';
     CardComponent,
     SafePipe,
     InfoSelectDialogComponent,
-    PatientInfoDialogComponent,
     PatientInfoComponent,
-    PatientListComponent,
     PatientInfoShowComponent,
     PanelTabComponent,
     PanelTitleComponent,
@@ -198,7 +194,6 @@ import { LaboratoryService } from './services/laboratory.service';
   ],
   entryComponents: [
     InfoSelectDialogComponent,
-    PatientInfoDialogComponent,
     PanelTitleAddInputComponent,
     AddnewtemplateComponent,
     AddfromtemplateComponent

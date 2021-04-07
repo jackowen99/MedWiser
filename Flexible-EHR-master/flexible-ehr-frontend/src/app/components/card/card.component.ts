@@ -121,6 +121,7 @@ export class CardComponent implements OnInit {
     console.log('drag start');
     //event.source._dragRef.reset();
     //event.source.element.nativeElement.style.transform = 'translate3d(0px, 0px, 0px)';
+    
   }
 
   public cdkDragDrop(event){
@@ -188,7 +189,9 @@ export class CardComponent implements OnInit {
 
 
   onMousedown($event: MouseEvent) {
+    $event.stopPropagation();
     // console.log(this.isPress);
+    /*
     if (this.isPress) {
 
       this.isPress = false;
@@ -198,17 +201,20 @@ export class CardComponent implements OnInit {
       this.mouseDownY = $event.clientY;
       this.isPress = true;
 
-    }
-
+    } 
+    */
   }
 
   onMousemove($event: MouseEvent) {
+    $event.stopPropagation();
+    /*
     if (this.isPress) {
 
       this.updatePosition(($event.clientX - this.mouseDownX) / this.panel.currentScale, ($event.clientY - this.mouseDownY) / this.panel.currentScale);
       this.mouseDownX = $event.clientX;
       this.mouseDownY = $event.clientY;
     }
+    */
   }
 
   onMouseup() {

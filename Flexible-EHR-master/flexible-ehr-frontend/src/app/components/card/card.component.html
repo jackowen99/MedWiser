@@ -3,6 +3,9 @@
 (cdkDragStarted)="cdkDragStart($event)"
 
 (cdkDragDropped)="cdkDragDrop($event)"
+(mousedown)="onMousedown($event)"
+     (mousemove)="onMousemove($event)"
+     (mouseup)="onMouseup()"
 cdkDrag>
   <div *ngIf="panel.isShowDetail" style="position: relative;">
     <mat-card [style.background]="note.color" style="min-width: 120%; max-width:200%; max-height: 650px; overflow: auto;">

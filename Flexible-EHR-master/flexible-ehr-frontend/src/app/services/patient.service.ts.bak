@@ -92,7 +92,7 @@ export class PatientService {
 
   // another url
   async searchHapi(name: string): Promise<Patient[]> {
-    const result = await this.http.get<any>('http://hapi.fhir.org/baseR4/Patient?_count=100', {
+    const result = await this.http.get<any>('http://hapi.fhir.org/baseR4/Patient', {
       headers: {
         'Content-Type': 'application/json'
       },
@@ -185,35 +185,6 @@ export class PatientService {
     };
   }
 
-  async getPatientsByPractitionerId(practitionerId: string) {
-    const resource = await this.http.get<any>(`http://hapi.fhir.org/baseR4/Encounter?_count=10000&practitioner=${practitionerId}`)
-      .toPromise()
-      .catch(e => {
-      console.log(e)
-    });
-
-    const patientRefs = []
-    resource.entry.forEach(entry => {
-      if(!patientRefs.includes(entry.resource.subject.reference)) {
-        patientRefs.push(entry.resource.subject.reference)
-      }
-    })
-
-    return patientRefs;
-  }
-
-  async getPatientListByIds(patientIds: string[]) {
-    return Promise.all(patientIds.map(async(patientId) => {
-      return await this.http.get<any>(`http://hapi.fhir.org/baseR4/${patientId}`).toPromise()
-    }))
-    .then((patients) => {
-      return patients
-    })
-    .catch(e => {
-      console.log(e)
-      return []
-    })
-  }
 
   parseEmail(telecom) {
     if (!telecom) {

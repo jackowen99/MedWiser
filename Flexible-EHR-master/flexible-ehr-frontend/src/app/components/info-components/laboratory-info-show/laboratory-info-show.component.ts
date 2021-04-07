@@ -117,10 +117,38 @@ export class LaboratoryInfoShowComponent implements OnInit {
     }
     this.chartOptionsDictionary = {};
     for(let i = 0; i < this.labs.length; i++){
-      
+    
+    let ranges = this.getRanges(this.labs[i].code);
+    let annotationOptions;
+    if(ranges){
+        annotationOptions = {
+            yaxis: [
+                {
+                  y: ranges.low,
+                  y2: ranges.high,
+                  borderColor: "#000",
+                  fillColor: "#B3F7CA",
+                  opacity: 0.3,
+                  label: {
+                    borderColor: "transparent",
+                    style: {
+                      fontSize: "0px",
+                      color: "transparent",
+                      background: "transparent",
+                    },
+                    text: "Y-axis range"
+                  }
+                }
+            ]
+        }
+    }
+    else{
+        annotationOptions = {};
+    }
     this.chartOptionsDictionary[this.labs[i].code] = {
         chart: this.getChart(this.labs[i]),
-        series: this.getSeries(this.labs[i])
+        series: this.getSeries(this.labs[i]),
+        annotations: annotationOptions
     }
       
     }
@@ -154,8 +182,62 @@ export class LaboratoryInfoShowComponent implements OnInit {
       );
       console.log(vi.times[i]);
     }
+    console.log(vi);
     series[0].data.sort(function(a, b) {return b.x.getTime() - a.x.getTime()});
     return series;
+  }
+
+  getRanges(code: string){
+      let ret;
+
+      switch(code){
+        case "Potassium":
+            ret = {
+                high: 5.0,
+                low: 3.5
+            };
+            break;
+        case "Bilirubin.total [Mass/​volume] in Serum or Plasma":
+            ret = {
+                high: 1.2,
+                low: 0.3
+            };
+            break;
+        case "Aspartate aminotransferase [Enzymatic activity/​volume] in Serum or Plasma":
+            ret = {
+                high: 35,
+                low: 0
+            };
+            break;
+        case "Sodium":
+            ret = {
+                high: 145,
+                low: 136
+            };
+            break;
+        case "Urea Nitrogen":
+            ret = {
+                high: 20,
+                low: 8
+            };
+            break;
+        case "Carbon Dioxide":
+            ret = {
+                high: 28,
+                low: 23
+            };
+            break;
+        case "Glucose":
+            ret = {
+                high: 105,
+                low: 70
+            };
+            break;
+        default:
+
+      }
+
+      return ret;
   }
 
   
