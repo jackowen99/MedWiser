@@ -10,13 +10,18 @@
     </ng-container>
 
     <ng-container matColumnDef="birthDate">
-        <th mat-header-cell *matHeaderCellDef> Birth Date </th>
+        <th mat-header-cell *matHeaderCellDef> Birthday </th>
         <td mat-cell *matCellDef="let element"> {{element.birthDate}} </td>
     </ng-container>
 
     <ng-container matColumnDef="country">
         <th mat-header-cell *matHeaderCellDef> Country </th>
         <td mat-cell *matCellDef="let element"> {{element.country}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element"><button mat-stroked-button color="primary" (click)="addPatient($event, element)">Select</button></td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="columns"></tr>

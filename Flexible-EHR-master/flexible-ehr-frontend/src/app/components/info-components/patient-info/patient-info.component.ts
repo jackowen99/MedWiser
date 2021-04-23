@@ -101,6 +101,7 @@ export class PatientInfoComponent implements OnInit, AfterViewInit {
     
     const patientData = await this.patientService.getPatientListByIds(patientIds)
     this.patientList = patientData.map(patient => {
+      const id = patient.id
       const gender = patient.gender || '-'
       const birthDate = patient.birthDate || '-'
       const patientNameObj = patient && patient.name ? patient.name[0] : '-'
@@ -110,7 +111,8 @@ export class PatientInfoComponent implements OnInit, AfterViewInit {
       const state = patient.address[0].state;
       const postalCode = patient.address[0].postalCode;
       const phone = patient.telecom && patient.telecom[0] ? patient.telecom[0].value : '-'
-      return { gender, birthDate, name, country, city, state, postalCode, phone }
+      //this.globalDataService.setPatient({id, gender, birthDate, name});
+      return {id, gender, birthDate, name, country, city, state, postalCode, phone }
     })
   }
 }
